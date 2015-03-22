@@ -15,5 +15,9 @@
   "license": "MIT",
   "devDependencies": {
     "mocha": "^2.2.1"
-  }
+  },
+    "repository": {
+    "type": "git",
+    "url": "git://github.com/mnording/nighwatch-mongo-reporter.git"
+  },
 }
