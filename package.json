@@ -1,6 +1,6 @@
 {
   "name": "nightwatch-mongo-reporter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Customer Reporter for the nightwatch project. Saving all ran tests into a defined MongoDB database",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,5 @@
     "repository": {
     "type": "git",
     "url": "git://github.com/mnording/nighwatch-mongo-reporter.git"
-  },
+  }
 }
