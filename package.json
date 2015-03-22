@@ -12,5 +12,8 @@
     "custom-reporter"
   ],
   "author": "Mattias Nording",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  }
 }
