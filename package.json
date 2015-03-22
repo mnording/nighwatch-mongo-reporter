@@ -1,0 +1,16 @@
+{
+  "name": "nightwatch-mongo-reporter",
+  "version": "1.0.0",
+  "description": "Customer Reporter for the nightwatch project. Saving all ran tests into a defined MongoDB database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nightwatch",
+    "mongodb",
+    "custom-reporter"
+  ],
+  "author": "Mattias Nording",
+  "license": "MIT"
+}
