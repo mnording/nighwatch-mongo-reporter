@@ -1,6 +1,6 @@
 {
   "name": "nightwatch-mongo-reporter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Customer Reporter for the nightwatch project. Saving all ran tests into a defined MongoDB database",
   "main": "index.js",
   "scripts": {
