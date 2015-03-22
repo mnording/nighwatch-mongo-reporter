@@ -3,6 +3,13 @@
 var MongoClient = require('mongodb').MongoClient;
 module.exports = function (options) {
     this.options = options;
+    if (this.options === undefined) {
+        this.options = {
+            ip: "127.0.0.1:27017",
+            dbname : "test",
+            collection: "test_insert"
+        };
+    }
     var self = this;
     this.fn = function (results, done) {
         MongoClient.connect('mongodb://'  + self.options.ip + '/' + self.options.dbname, function (err, db) {
