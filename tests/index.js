@@ -41,50 +41,29 @@
                 fakeresultsobject = { test : "you shall not crash" };
             test.fn(fakeresultsobject, fakecallback);
         });
-        it('should insert correct', function (done) {
+        it('should create default options', function (done) {
             var MongoClient = require('mongodb').MongoClient,
-                test = new MongoReporter(),
-                fakecallback = function () {},
-                time = new Date().getTime(),
-                fakeresultsobject = { test : "you shall not crash" + time };
-            test.fn(fakeresultsobject, fakecallback);
-            MongoClient.connect('mongodb://'  + test.options.ip + '/' + test.options.dbname, function (err, db) {
-                var collection = db.collection(test.options.collection)
-                        .find(fakeresultsobject)
-                        .limit(100)
-                            .toArray(function (err, docs) {
-                            assert.equal(docs.length === 1, true);
-                            db.collection(test.options.collection).drop();
-                            db.close();
-                            done();
-                        });
-            });
+                test = new MongoReporter();
+            assert.equal(test.options.ip, "127.0.0.1:27017");
+            assert.equal(test.options.dbname, "test");
+            assert.equal(test.options.collection, "test_insert");
+            assert.equal(test.options.customObject, null);
+            done();
+
         });
         it('should allow custom object', function (done) {
-            var MongoClient = require('mongodb').MongoClient,
-                test = new MongoReporter({
-                    ip: "127.0.0.1:27017",
-                    dbname : "test",
-                    collection: "test_insert",
-                    customObject :{myobject : "yes it is", yourfile: " is belong to us"}
-                }),
-                time = new Date().getTime(),
-                fakeresultsobject = { test : "you shall not crash" + time },
-                fakecallback = function () {};
-            test.fn(fakeresultsobject, fakecallback);
-            var verificationobject = test.options.customObject;
-            verificationobject.results = fakeresultsobject;
-            MongoClient.connect('mongodb://'  + test.options.ip + '/' + test.options.dbname, function (err, db) {
-                var collection = db.collection(test.options.collection)
-                        .find(verificationobject)
-                        .limit(100)
-                            .toArray(function (err, docs) {
-                            assert.equal(docs.length === 1, true);
-                            db.collection(test.options.collection).drop();
-                            db.close();
-                            done();
-                        });
-            });
+            var test = new MongoReporter({
+                    ip: "127.0.0.2:27017",
+                    dbname : "test2",
+                    collection: "test2_insert",
+                    customObject : {myobject : "yes it is", yourfile: "is belong to us"}
+                });
+            assert.equal(test.options.ip, "127.0.0.2:27017");
+            assert.equal(test.options.dbname, "test2");
+            assert.equal(test.options.collection, "test2_insert");
+            assert.equal(test.options.customObject.myobject, "yes it is");
+            assert.equal(test.options.customObject.yourfile, "is belong to us");
+            done()
         });
     });
 }());
