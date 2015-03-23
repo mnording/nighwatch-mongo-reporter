@@ -60,5 +60,31 @@
                         });
             });
         });
+        it('should allow custom object', function (done) {
+            var MongoClient = require('mongodb').MongoClient,
+                test = new MongoReporter({
+                    ip: "127.0.0.1:27017",
+                    dbname : "test",
+                    collection: "test_insert",
+                    customObject :{myobject : "yes it is", yourfile: " is belong to us"}
+                }),
+                time = new Date().getTime(),
+                fakeresultsobject = { test : "you shall not crash" + time },
+                fakecallback = function () {};
+            test.fn(fakeresultsobject, fakecallback);
+            var verificationobject = test.options.customObject;
+            verificationobject.results = fakeresultsobject;
+            MongoClient.connect('mongodb://'  + test.options.ip + '/' + test.options.dbname, function (err, db) {
+                var collection = db.collection(test.options.collection)
+                        .find(verificationobject)
+                        .limit(100)
+                            .toArray(function (err, docs) {
+                            assert.equal(docs.length === 1, true);
+                            db.collection(test.options.collection).drop();
+                            db.close();
+                            done();
+                        });
+            });
+        });
     });
 }());
