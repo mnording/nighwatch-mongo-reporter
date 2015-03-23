@@ -18,7 +18,7 @@ var mongo = new mongoreport({
     ip:"127.0.0.1:27017",
     dbname:"testdb",
     collection:"testcollection",
-    customObject: {yourcustomfield : "specialId"}
+    customObject: null
 });
 
 
