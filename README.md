@@ -1,6 +1,12 @@
 # nighwatch-mongo-reporter
 A custom reporter for the nighwatch project. Storing all results in a mongoDB
+
+[![Build Status](https://travis-ci.org/mnording/nighwatch-mongo-reporter.svg?branch=master)](https://travis-ci.org/mnording/nighwatch-mongo-reporter)
+[![Git Status](https://img.shields.io/github/issues/mnording/nighwatch-mongo-reporter.svg)](https://github.com/mnording/nighwatch-mongo-reporter)
+
 The reporter expects an options object
+
+
 ```javascript
 {
 dbname : "test",
