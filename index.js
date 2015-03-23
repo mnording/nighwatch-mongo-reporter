@@ -7,7 +7,8 @@ module.exports = function (options) {
         this.options = {
             ip: "127.0.0.1:27017",
             dbname : "test",
-            collection: "test_insert"
+            collection: "test_insert",
+            customObject : null
         };
     }
     var self = this;
@@ -17,6 +18,10 @@ module.exports = function (options) {
                 throw err;
             }
             var collection = db.collection(self.options.collection);
+            if (self.options.customObject !== null) {
+                self.options.customObject.results = results;
+                results =  self.options.customObject;
+            }
             collection.insert(results, function (err, docs) {
                 db.close();
                 done();
