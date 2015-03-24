@@ -14,13 +14,14 @@
   "author": "Mattias Nording",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "2.2.1"
+    "coveralls": "^2.11.2",
+    "mocha": "2.2.1",
+    "mocha-lcov-reporter": "0.0.2"
   },
-    "dependencies":
-    {
-        "mongodb":"1.4.35"
-    },
-    "repository": {
+  "dependencies": {
+    "mongodb": "1.4.35"
+  },
+  "repository": {
     "type": "git",
     "url": "git://github.com/mnording/nighwatch-mongo-reporter.git"
   }
