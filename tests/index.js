@@ -1,3 +1,4 @@
+/*global require, it, describe */
 (function () {
     'use strict';
     var assert = require('assert'),
@@ -27,20 +28,6 @@
             var test = new MongoReporter();
             assert.notEqual(test.options.ip, undefined);
         });
-        it('Should have correct default options', function () {
-            var test = new MongoReporter();
-            assert.equal(test.options.ip, "127.0.0.1:27017");
-            assert.equal(test.options.dbname, "test");
-            assert.equal(test.options.collection, "test_insert");
-        });
-    });
-    describe('Mongo', function () {
-        it('should not crash', function () {
-            var test = new MongoReporter(),
-                fakecallback = function () {},
-                fakeresultsobject = { test : "you shall not crash" };
-            test.fn(fakeresultsobject, fakecallback);
-        });
         it('should create default options', function (done) {
             var MongoClient = require('mongodb').MongoClient,
                 test = new MongoReporter();
@@ -50,6 +37,12 @@
             assert.equal(test.options.customObject, null);
             done();
 
+        });
+        it('should allow partial options', function () {
+            var test = new MongoReporter({ip: "222"});
+            assert.equal(test.options.ip, "222");
+            assert.equal(test.options.dbname, "test");
+            assert.equal(test.options.collection, "test_insert");
         });
         it('should allow custom object', function (done) {
             var test = new MongoReporter({
@@ -63,7 +56,7 @@
             assert.equal(test.options.collection, "test2_insert");
             assert.equal(test.options.customObject.myobject, "yes it is");
             assert.equal(test.options.customObject.yourfile, "is belong to us");
-            done()
+            done();
         });
     });
 }());

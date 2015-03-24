@@ -3,17 +3,7 @@ A custom reporter for the nighwatch project. Storing all results in a mongoDB
 
 [![Build Status](https://travis-ci.org/mnording/nighwatch-mongo-reporter.svg?branch=master)](https://travis-ci.org/mnording/nighwatch-mongo-reporter)
 [![Git Status](https://img.shields.io/github/issues/mnording/nighwatch-mongo-reporter.svg)](https://github.com/mnording/nighwatch-mongo-reporter)
-
-The reporter expects an options object
-
-
-```javascript
-{
-dbname : "test",
-ip: "127.0.0.1",
-collection: "testcollection"
-}
-```
+[![npm](https://img.shields.io/npm/dm/nightwatch-mongo-reporter.svg)]()
 
 # How to use it with nighwatch
 You use the reporter as a custom reporter
@@ -32,3 +22,6 @@ module.exports = {
     reporter:mongo.fn
 };
 ```
+## The custom object
+The custom object is a way for you to add arbitrary information to your results object
+The reporter will take the nighwatch results and append it to the customObjects property results
