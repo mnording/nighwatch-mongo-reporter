@@ -28,14 +28,13 @@
             var test = new MongoReporter();
             assert.notEqual(test.options.ip, undefined);
         });
-        it('should create default options', function (done) {
+        it('should create default options', function () {
             var MongoClient = require('mongodb').MongoClient,
                 test = new MongoReporter();
             assert.equal(test.options.ip, "127.0.0.1:27017");
             assert.equal(test.options.dbname, "test");
             assert.equal(test.options.collection, "test_insert");
             assert.equal(test.options.customObject, null);
-            done();
 
         });
         it('should allow partial options', function () {
@@ -44,7 +43,13 @@
             assert.equal(test.options.dbname, "test");
             assert.equal(test.options.collection, "test_insert");
         });
-        it('should allow custom object', function (done) {
+        it('should force customObject to be null if not defined as object', function () {
+            var test = new MongoReporter({customObject: "222"});
+            assert.equal(test.options.customObject, null);
+            test = new MongoReporter({customObject : 2323});
+            assert.equal(test.options.customObject, null);
+        });
+        it('should allow custom object', function () {
             var test = new MongoReporter({
                     ip: "127.0.0.2:27017",
                     dbname : "test2",
@@ -56,7 +61,6 @@
             assert.equal(test.options.collection, "test2_insert");
             assert.equal(test.options.customObject.myobject, "yes it is");
             assert.equal(test.options.customObject.yourfile, "is belong to us");
-            done();
         });
     });
 }());

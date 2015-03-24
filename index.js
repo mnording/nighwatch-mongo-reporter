@@ -16,6 +16,14 @@ module.exports = function (options) {
         if (self.options.collection === undefined) {
             self.options.collection = self.defaultOptions.collection;
         }
+        if (self.options.customObject === undefined) {
+            self.options.defaultOptions = self.defaultOptions.customObject;
+        }
+        if (self.options.customObject !== undefined) {
+            if (typeof self.options.customObject !== 'object') {
+                self.options.customObject = self.defaultOptions.customObject;
+            }
+        }
     };
     this.defaultOptions = {
         ip: "127.0.0.1:27017",
