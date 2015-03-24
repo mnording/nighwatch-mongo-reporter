@@ -11,7 +11,7 @@ module.exports = function (options) {
             self.options.ip = self.defaultOptions.ip;
         }
         if (self.options.dbname === undefined) {
-           self.options.dbname = self.defaultOptions.dbname;
+            self.options.dbname = self.defaultOptions.dbname;
         }
         if (self.options.collection === undefined) {
             self.options.collection = self.defaultOptions.collection;
